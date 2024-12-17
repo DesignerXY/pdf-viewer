@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF 查看器</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf_viewer.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+      #toolbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: #f1f1f1;
+      }
+      #pdf-container {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        transform-origin: top left;
+      }
+      .page {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform-origin: top left;
+      }
+      .stamp {
+        position: absolute;
+        cursor: move;
+        border: 2px dashed transparent;
+        transition: border-color 0.3s;
+        margin: 0;
+        padding: 0;
+        transform-origin: bottom right;
+      }
+      .stamp:hover {
+        border-color: blue;
+      }
+      .rotate-button {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+      }
+      .resize-handle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: blue;
+        border-radius: 50%;
+        cursor: nwse-resize;
+        display: none;
+      }
+      .resize-handle-top-left {
+        cursor: nwse-resize;
+      }
+      .resize-handle-top-right {
+        cursor: nesw-resize;
+      }
+      .resize-handle-bottom-left {
+        cursor: nesw-resize;
+      }
+      .resize-handle-bottom-right {
+        cursor: nwse-resize;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="toolbar">
+      <div>
+        <button id="prev">上一页</button>
+        <button id="next">下一页</button>
+        <input type="number" id="page-num" value="1" style="width: 50px" />
+        <span>
+          /
+          <span id="page-count"></span>
+        </span>
+        <button id="zoom-out">缩小</button>
+        <input
+          type="number"
+          id="current-scale"
+          value="1"
+          style="width: 50px; text-align: center"
+        />
+        <button id="zoom-in">放大</button>
+      </div>
+      <div>
+        <input type="file" id="pdf-upload" accept="application/pdf" />
+        <button id="upload-stamp">上传印章</button>
+      </div>
+    </div>
+    <div id="pdf-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
